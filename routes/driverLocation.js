@@ -38,7 +38,7 @@ router.get('/driverLocation', (req, res, next) => {
             "type": "Point",
             "coordinates": [parseFloat(req.query.longitude), parseFloat(req.query.latitude)]
           },
-          "$maxDistance": 10000
+          "$maxDistance": 100000
         }
       }
     },
