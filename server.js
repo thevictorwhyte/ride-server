@@ -3,14 +3,15 @@ const path = require('path');
 
 const index = require('./routes/index');
 const bookings = require('./routes/bookings');
+const driverLocationSocket = require('./routes/driverLocation');
 
 const app = express();
 
 const port = 3000;
 
-app.listen(process.env.PORT || port, () => {
-  console.log(`Server running on port ${process.env.PORT}`);
-});
+const socketio = require('socket.io');
+
+const io = socketio();
 
 //views
 app.set('views', path.join(__dirname, 'views'));
@@ -23,3 +24,10 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
 app.use('/', index);
 app.use('/api', bookings);
+app.use('/api', driverLocationSocket);
+
+io.listen(
+  app.listen(process.env.PORT || port, () => {
+    console.log(`Server running on port ${process.env.PORT || port}`);
+  })
+);
