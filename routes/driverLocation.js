@@ -29,21 +29,18 @@ router.put('/driverLocationSocket/:id', (req, res, next) => {
 
 //get nearby driver
 router.get('/driverLocation', (req, res, next) => {
-  db.driversLocation.ensureIndex({ coordinate: '2dsphere' });
+  db.driversLocation.ensureIndex({ "coordinate": "2dsphere" });
   db.driversLocation.find(
     {
-      coordinate: {
-        $near: {
-          $geometry: {
-            type: 'Point',
-            coordinates: [
-              parseFloat(req.query.longitude),
-              parseFloat(req.query.latitude),
-            ],
+      "coordinate": {
+        "$near": {
+          "$geometry": {
+            "type": "Point",
+            "coordinates": [parseFloat(req.query.longitude), parseFloat(req.query.latitude)]
           },
-          $maxDistance: 1000000,
-        },
-      },
+          "$maxDistance": 10000
+        }
+      }
     },
     (err, location) => {
       if (err) {
