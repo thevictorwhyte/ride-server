@@ -28,7 +28,7 @@ router.put('/driverLocationSocket/:id', (req, res, next) => {
 });
 
 //get nearby driver
-router.get('/driverLocationSocket', (req, res, next) => {
+router.get('/driverLocation', (req, res, next) => {
   db.driversLocation.ensureIndex({ coordinate: '2dsphere' });
   db.driversLocation.find(
     {

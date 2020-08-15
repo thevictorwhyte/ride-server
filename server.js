@@ -4,6 +4,7 @@ const path = require('path');
 const index = require('./routes/index');
 const bookings = require('./routes/bookings');
 const driverLocationSocket = require('./routes/driverLocation');
+const driverLocation = require('./routes/driverLocation');
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 app.use('/', index);
 app.use('/api', bookings);
 app.use('/api', driverLocationSocket);
+app.use('/api', driverLocation);
 
 io.listen(
   app.listen(process.env.PORT || port, () => {
