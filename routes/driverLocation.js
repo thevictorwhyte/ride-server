@@ -37,8 +37,8 @@ router.get('/driverLocation', (req, res, next) => {
           $geometry: {
             type: 'Point',
             coordinates: [
-              parseFloat(req.query.longitude),
-              parseFloat(req.query.latitude),
+              parseFloat(req.body.longitude),
+              parseFloat(req.body.latitude),
             ],
           },
           $maxDistance: 1000000,
