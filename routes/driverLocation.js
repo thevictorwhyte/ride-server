@@ -48,4 +48,16 @@ router.get('/driverLocation', (req, res, next) => {
     }
   );
 });
+
+//Get Single Driver and emit track by user to driver
+router.get("/driverLocation/:id", function (req, res, next) {
+  var io = req.app.io;
+  db.driversLocation.findOne({ driverId: req.params.id }, function (err, location) {
+    if (err) {
+      res.send(err);
+    }
+    res.send(location);
+    io.emit("trackDriver", location);
+  });
+});
 module.exports = router;
