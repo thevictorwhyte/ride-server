@@ -33,3 +33,7 @@ io.listen(
     console.log(`Server running on port ${process.env.PORT || port}`);
   })
 );
+
+app.io = io.on("connection", (socket) => {
+  console.log("Socket connected: " + socket.id);
+})

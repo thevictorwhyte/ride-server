@@ -19,6 +19,8 @@ router.get('/bookings', (req, res, next) => {
 
 router.post('/bookings', (req, res) => {
   const booking = req.body.data;
+  const nearByDriver = req.body.nearByDriver;
+  const io = req.app.io;
 
   if (!booking.userName) {
     res.status(400).json({ error: 'bad data' });
@@ -28,6 +30,11 @@ router.post('/bookings', (req, res) => {
         res.send(err);
       }
       res.json(savedBooking);
+      if (nearByDriver.socketId) {
+        io.emit(nearByDriver.socketId + "driverRequest", savedBooking)
+      } else {
+        console.log("Driver not connected");
+      }
     });
   }
 });
