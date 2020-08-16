@@ -67,7 +67,7 @@
       const driverRequest = socket.id + "driverRequest";
       socket.on(driverRequest, (passengerData) => {
         if (passengerData) {
-          console.log("Passenger looking for a driver", + passengerData);
+          console.log("Passenger looking for a driver", + passengerData.userName);
         }
       })
     });
