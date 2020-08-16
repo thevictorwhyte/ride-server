@@ -2,10 +2,7 @@ const express = require('express');
 const mongojs = require('mongojs');
 const router = express.Router();
 
-const db = mongojs(
-  'mongodb+srv://victor:victor999@ride-app.xqxjk.mongodb.net/ride?retryWrites=true&w=majority',
-  ['driversLocation']
-);
+const db = mongojs(process.env.DB_CONNECTION_STRING, ['driversLocation']);
 
 // update driver socket id
 router.put('/driverLocationSocket/:id', (req, res, next) => {
