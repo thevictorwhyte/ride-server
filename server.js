@@ -5,6 +5,7 @@ const index = require('./routes/index');
 const bookings = require('./routes/bookings');
 const driverLocationSocket = require('./routes/driverLocation');
 const driverLocation = require('./routes/driverLocation');
+const drivers = require("./routes/drivers");
 
 const app = express();
 
@@ -27,6 +28,7 @@ app.use('/', index);
 app.use('/api', bookings);
 app.use('/api', driverLocationSocket);
 app.use('/api', driverLocation);
+app.use("/api", drivers);
 
 io.listen(
   app.listen(process.env.PORT || port, () => {
